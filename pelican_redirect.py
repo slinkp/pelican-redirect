@@ -107,7 +107,6 @@ class RedirectGenerator(Generator):
                     os.path.join(writer.output_path, dest))
             except KeyError:
                 pass
-            import pdb; pdb.set_trace()
 
             writer.write_file(
                 dest, template, self.context, rurls,
