@@ -1,5 +1,6 @@
 <html>
  <head>
+  <title>{% block title %}{{ page.title }} - MOVED - {{ SITENAME }}{% endblock %}</title>
    <meta http-equiv="refresh" content="{{ page.delay }}; url={{ page.location }}">
 </head>
 <body>
@@ -11,6 +12,4 @@
        <a href="{{ page.location }}">{{ page.location }}</a>
     {% endif %}
     </section>
-
 </body>
-</html>
