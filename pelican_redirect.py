@@ -42,6 +42,7 @@ class RedirectReader(BaseReader):
             'title': message.get('title', u''),
             'location': location,
             'delay': delay,
+            'status': message.get('status', 'hidden')
         }
 
         # Slug is important because it Pelican's slugification affects
@@ -136,9 +137,11 @@ class RedirectGenerator(Generator):
             # and the Page is still there in the wrong place.
             # Where/ how do they handle subdirs?
             try:
-                writer._overridden_files.remove(
-                    os.path.join(writer.output_path, dest))
+                _path = os.path.join(writer.output_path, dest)
+                writer._overridden_files.remove(_path)
+                #print "Removed redirect file at %s" % _path
             except KeyError:
+                #print "Redirect not in overridden files at %s" % _path
                 pass
 
             writer.write_file(
@@ -151,6 +154,7 @@ class RedirectGenerator(Generator):
         """
         Redirects don't go in any feeds.
         """
+        # print "EMPTY REDIRECT FEED for %s" % self
         return
 
     def generate_period_archives(self):
